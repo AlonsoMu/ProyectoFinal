@@ -28,8 +28,8 @@ if(!isset($_SESSION["login"])){
     Formulario Colaboradores
   </button>-->
 
-  <div class="container">
-    <div class="card">
+  <div class="container mt-3">
+    <div class="card table-responsive">
       <div class="card-header bg-primary text-light">
         <div class="row">
           <div class="col-md-6">
@@ -37,36 +37,52 @@ if(!isset($_SESSION["login"])){
           </div>
           <div class="col-md-6 text-end">
             <button class="btn btn-success btn-sm" id="abrir-modal" data-bs-toggle="modal" data-bs-target="#modal-colaboradores"><i class="bi bi-plus-circle"></i> Agregar colaborador</button>
-            <a href="entrada.php" class="btn btn-secondary btn-sm"><i class="bi bi-arrow-left"></i> Volver</a>
           </div>
         </div> 
       </div>
+    
 
   <div class="card-body">
-    <table id="tabla-colaboradores" class="table table-striped table-sm">
-      <thead>
-        <tr>
-          <th>#</th>
-          <th>Apellidos</th>
-          <th>Nombres</th>
-          <th>Cargo</th>
-          <th>Sede</th>
-          <th>Telefono</th>
-          <th>Tipo Contrato</th>
-          <th>Direccion</th>
-          <th>Operaciones</th>
+      <div class="table-responsive">   
+        <table class="table table-striped table-sm" id="tabla-colaboradores" >
+          <colgroup>
+            <col width = "3%">
+            <col width = "13%">
+            <col width = "11%">
+            <col width = "11%">
+            <col width = "11%">
+            <col width = "11%">
+            <col width = "18%">
+            <col width = "10%">
+            <col width = "25%">
+        </colgroup>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Apellidos</th>
+              <th>Nombres</th>
+              <th>Cargo</th>
+              <th>Sede</th>
+              <th>Telefono</th>
+              <th>Tipo Contrato</th>
+              <th>Direccion</th>
+              <th>Operaciones</th>
 
-        </tr>
-      </thead>
-      <tbody>
+            </tr>
+          </thead>
+          <tbody>
 
-      </tbody>
-    </table>
-  </div>
+          </tbody>
+        </table>
+      </div>
+    </div>
 
 
-    <div class="card-footer text-end">
-        <a href="#" onclick="confirmLogout()">Cerrar sesión</a>
+    <div class="card-footer text-end d-flex justify-content-between">
+      <button type="button" class="btn btn-danger me-2" onclick="confirmLogout()">
+        <i class="bi bi-box-arrow-right"></i> Cerrar sesión
+      </button>
+      <a href="entrada.php" class="btn btn-warning btn-sm"><i class="bi bi-arrow-left"></i> Volver</a>
     </div>
 
     <script>

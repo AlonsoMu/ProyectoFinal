@@ -43,7 +43,7 @@ if (isset($_POST['operacion'])){
             if ($registro['cv'] == ''){
                 echo $botonNulo;
             }else{
-                echo " <a href='../views/pdf/documento/{$registro['cv']}' data-lightbox='{$registro['idcolaborador']}' data-title='{$datosColaborador}' class='btn btn-sm btn-warning' target='_blank'> <i class='bi bi-eye-fill'></i></a>";
+                echo " <a href='../views/pdf/documento/{$registro['cv']}' data-lightbox='{$registro['idcolaborador']}' data-title='{$datosColaborador}' class='btn btn-sm btn-warning' target='_blank'> <i class='bi bi-file-earmark-pdf-fill'></i></a>";
             }
 
             //La tercera parte a RENDERIZAR, cierre de la fila

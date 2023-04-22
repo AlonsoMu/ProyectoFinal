@@ -35,7 +35,7 @@ if(!isset($_SESSION["login"])){
   </button>-->
 
   <div class="container mt-3">
-    <div class="card">
+    <div class="card table-responsive">
       <div class="card-header bg-info text-light">
         <div class="row">
           <div class="col-md-6">
@@ -43,13 +43,23 @@ if(!isset($_SESSION["login"])){
           </div>
           <div class="col-md-6 text-end">
             <button class="btn btn-success btn-sm" id="abrir-modal" data-bs-toggle="modal" data-bs-target="#modal-estudiante"><i class="bi bi-plus-circle"></i> Agregar estudiante</button>
-            <a href="entrada.php" class="btn btn-secondary btn-sm"><i class="bi bi-arrow-left"></i> Volver</a>
           </div>
         </div>    
 
       </div>
   <div class="card-body">
-    <table id="tabla-estudiantes" class="table table-striped table-sm">
+    <div class="table-responsive"> 
+    <table class="table table-sm table-striped table-sm" id="tabla-estudiantes" >
+      <colgroup>
+          <col width = "5%">
+          <col width = "20%">
+          <col width = "10%">
+          <col width = "10%">
+          <col width = "10%">
+          <col width = "10%">
+          <col width = "25%">
+          <col width = "10%">
+      </colgroup>
       <thead>
         <tr>
           <th>#</th>
@@ -66,9 +76,15 @@ if(!isset($_SESSION["login"])){
 
       </tbody>
     </table>
+    </div>
   </div>
-  <div class="card-footer text-end">
-        <a href="#" onclick="confirmLogout()">Cerrar sesión</a>
+
+
+    <div class="card-footer text-end d-flex justify-content-between">
+      <button type="button" class="btn btn-danger me-2" onclick="confirmLogout()">
+        <i class="bi bi-box-arrow-right"></i> Cerrar sesión
+      </button>
+      <a href="entrada.php" class="btn btn-warning btn-sm"><i class="bi bi-arrow-left"></i> Volver</a>
     </div>
 
     <script>
@@ -99,8 +115,7 @@ if(!isset($_SESSION["login"])){
           <h5 class="modal-title" id="modalTitleId">Registro de estudiantes</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <div class="modal-body">
-          
+        <div class="modal-body">  
           <form action="" autocomplete="off" id="formulario-estudiantes" enctype="multipart/form-data">
             <div class="row">
               <div class="mb-3 col-md-6">
