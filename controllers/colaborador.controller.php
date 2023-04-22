@@ -1,9 +1,6 @@
 <?php
 
-session_start();
-if(!isset($_SESSION["login"])){
-  header("location:../index.php");
-}
+
 
 
 require_once '../models/Colaborador.php';
@@ -103,6 +100,7 @@ if (isset($_POST['operacion'])){
       }
   
       $colaborador->eliminarColaborador($idcolaborador);
+      
     }
   }
 

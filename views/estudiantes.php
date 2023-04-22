@@ -328,6 +328,7 @@ if(!isset($_SESSION["login"])){
           });
         }
       });
+      
 
       //Predeterminamos un control dentro del modal
       $("#modal-estudiante").on("shown.bs.modal", event => {

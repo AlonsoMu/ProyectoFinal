@@ -135,7 +135,7 @@ BEGIN
 END $$
 
 
-CALL spu_colaboradores_eliminar();
+CALL spu_colaboradores_eliminar(5);
 
 -- ELIMINAR ESTUDIANTE
 DELIMITER $$
