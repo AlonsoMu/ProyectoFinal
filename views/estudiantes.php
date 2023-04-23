@@ -312,21 +312,37 @@ if(!isset($_SESSION["login"])){
 
       $("#tabla-estudiantes tbody").on("click",".eliminar", function(){
         const idestudianteEliminar = $(this).data("idestudiante");
-        if(confirm("¿Seguro que quieres eliminar?")){
-          $.ajax({
-            url: '../controllers/estudiante.controller.php',
-            type: 'POST',
-            data: {
-              operacion : 'eliminar',
-              idestudiante : idestudianteEliminar
-            },
-            success: function(result){
-              if(result == ""){
-                mostrarEstudiantes();
+        Swal.fire({
+          title: '¿Estás seguro de que deseas eliminar este estudiante?',
+          text: "Esta acción no se puede deshacer.",
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#33B8FF',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Sí, eliminar',
+          cancelButtonText: 'Cancelar'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            $.ajax({
+              url: '../controllers/estudiante.controller.php',
+              type: 'POST',
+              data: {
+                operacion: 'eliminar',
+                idestudiante: idestudianteEliminar
+              },
+              success: function(result){
+                if(result == ""){
+                  mostrarEstudiantes();
+                }
               }
-            }
-          });
-        }
+            });
+            Swal.fire(
+              '¡Eliminado!',
+              'El estudiante ha sido eliminado.',
+              'success'
+            )
+          }
+        })
       });
       
 
