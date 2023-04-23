@@ -259,11 +259,18 @@ if(!isset($_SESSION["login"])){
             processData: false,
             cache: false,
             success: function(){
-                $("#formulario-colaboradores")[0].reset();
-                $("#modal-colaboradores").modal("hide");
-                alert("Guardado correctamente");
+              $("#formulario-colaboradores")[0].reset();
+              $("#modal-colaboradores").modal("hide");
+              Swal.fire({
+                title: 'Guardado correctamente',
+                icon: 'success',
+                showCancelButton: false,
+                confirmButtonColor: '#3085d6',
+                confirmButtonText: 'OK'
+              }).then((result) => {
                 mostrarColaboradores();
-          }
+              });  
+            }
         });
       }
       
@@ -288,21 +295,37 @@ if(!isset($_SESSION["login"])){
 
       $("#tabla-colaboradores tbody").on("click",".eliminar", function(){
         const idcolaboradorEliminar = $(this).data("idcolaborador");
-        if(confirm("¿Seguro que quieres eliminar?")){
-          $.ajax({
-            url: '../controllers/colaborador.controller.php',
-            type: 'POST',
-            data: {
-              operacion : 'eliminar',
-              idcolaborador : idcolaboradorEliminar
-            },
-            success: function(result){
-              if(result == ""){
-                mostrarColaboradores();
+        Swal.fire({
+          title: '¿Estás seguro de que deseas eliminar este colaborador?',
+          text: "Esta acción no se puede deshacer.",
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#33B8FF',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Sí, eliminar',
+          cancelButtonText: 'Cancelar'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            $.ajax({
+              url: '../controllers/colaborador.controller.php',
+              type: 'POST',
+              data: {
+                operacion: 'eliminar',
+                idcolaborador: idcolaboradorEliminar
+              },
+              success: function(result){
+                if(result == ""){
+                  mostrarColaboradores();
+                }
               }
-            }
-          });
-        }
+            });
+            Swal.fire(
+              '¡Eliminado!',
+              'El colaborador ha sido eliminado.',
+              'success'
+            )
+          }
+        })
       });
 
       $("#guardar-colaborador").click(preguntarRegistro);

@@ -252,8 +252,15 @@ if(!isset($_SESSION["login"])){
           success: function(){
             $("#formulario-estudiantes")[0].reset();
             $("#modal-estudiante").modal("hide");
-            //alert("Guardado correctamente");
-            mostrarEstudiantes();
+            Swal.fire({
+              title: 'Guardado correctamente',
+              icon: 'success',
+              showCancelButton: false,
+              confirmButtonColor: '#3085d6',
+              confirmButtonText: 'OK'
+            }).then((result) => {
+              mostrarEstudiantes();
+            });
           }
         });
       }
