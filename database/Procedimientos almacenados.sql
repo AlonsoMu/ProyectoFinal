@@ -164,19 +164,19 @@ CALL spu_usuarios_login('INSTRUCTOR');
 DELIMITER $$
 CREATE PROCEDURE spu_obtener_colaboradores (IN _idcolaborador INT)
 BEGIN
-    SELECT * FROM colaboradores 
+    SELECT cv FROM colaboradores 
 	WHERE idcolaborador = _idcolaborador;
 END $$ 
 
-CALL spu_obtener_colaboradores(1);
+CALL spu_obtener_colaboradores(12);
 
 -- OBTENER ESTUDIANTES
 
 DELIMITER $$
 CREATE PROCEDURE spu_obtener_estudiantes (IN _idestudiante INT)
 BEGIN
-    SELECT * FROM estudiantes 
+    SELECT fotografia FROM estudiantes 
 	WHERE idestudiante = _idestudiante;
 END $$ 
 
-CALL spu_obtener_estudiantes(1);
+CALL spu_obtener_estudiantes(9);
