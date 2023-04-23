@@ -10,15 +10,7 @@ class Colaborador extends Conexion{
     $this->accesoBD = parent::getConexion();
  }
 
-  public function eliminarColaborador($idcolaborador = 0){
-    try {
-      $consulta = $this->accesoBD->prepare("CALL spu_colaboradores_eliminar(?)");
-      $consulta->execute(array($idcolaborador));
-
-    }catch (Exception $e) {
-      die($e->getMessage());
-    }
-  }
+  
 
   public function registrarColaborador($datos = []){
     try {
@@ -53,12 +45,25 @@ class Colaborador extends Conexion{
       }
     }
 
+
+  public function eliminarColaborador($idcolaborador = 0){
+    try {
+      $consulta = $this->accesoBD->prepare("CALL spu_colaboradores_eliminar(?)");
+      $consulta->execute(array($idcolaborador));
+
+    }
+    catch (Exception $e) {
+      die($e->getMessage());
+    }
+  }
+
+
   public function obtenerColaborador($idcolaborador = 0){
     try{
         $consulta = $this->accesoBD->prepare("CALL spu_obtener_colaboradores(?)");
         $consulta->execute(array($idcolaborador));
-  
-        return $consulta->fetch(PDO::FETCH_ASSOC);
+        $consulta = $consulta->fetch();
+        return $consulta;
       }
       catch(Exception $e){
         die($e->getMessage());

@@ -10,15 +10,7 @@ class Estudiante extends Conexion{
     $this->accesoBD = parent::getConexion();
   }
 
-  public function eliminarEstudiante($idestudiante = 0){
-    try {
-      $consulta = $this->accesoBD->prepare("CALL spu_estudiantes_eliminar(?)");
-      $consulta->execute(array($idestudiante));
-
-    }catch (Exception $e) {
-      die($e->getMessage());
-    }
-  }
+  
 
   //Datos[] es un array asociativo, que contiene la información
   //a guardar proveniente del controlador
@@ -59,12 +51,25 @@ class Estudiante extends Conexion{
     try{
         $consulta = $this->accesoBD->prepare("CALL spu_obtener_estudiantes(?)");
         $consulta->execute(array($idestudiante));
+        $registro = $consulta->fetch();
   
-        return $consulta->fetch(PDO::FETCH_ASSOC);
+        return $registro;
       }
       catch(Exception $e){
         die($e->getMessage());
       }
     }
+
+  public function eliminarEstudiante($idestudiante = 0){
+    try {
+      $consulta = $this->accesoBD->prepare("CALL spu_estudiantes_eliminar(?)");
+      $consulta->execute(array($idestudiante));
+      
+      return true;
+
+    }catch (Exception $e) {
+      die($e->getMessage());
+    }
+  }
 
 }

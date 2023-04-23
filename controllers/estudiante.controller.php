@@ -87,19 +87,27 @@ if (isset($_POST['operacion'])){
     }
   } //Fin operacion=listar
 
+  if($_POST['operacion'] == 'obt_foto'){
+    $idestudiante = $_POST['idestudiante'];
+    $archivoimg= $estudiante->obtenerEstudiante($idestudiante);
+
+    echo $archivoimg;
+
+  }
+
   if($_POST['operacion'] == 'eliminar'){
     $idestudiante = $_POST['idestudiante'];
+
     $registro = $estudiante->obtenerEstudiante($idestudiante);
-    
-    if ($registro['fotografia'] != '') {
+
+    $estudiante->eliminarEstudiante($idestudiante);
+  
+    if ($registro['fotografia']) {
       $rutaArchivo = '../views/img/fotografias/' . $registro['fotografia'];
       if (file_exists($rutaArchivo)) {
         unlink($rutaArchivo);
       }
     }
-
-    $estudiante->eliminarEstudiante($idestudiante);
-  
     
   }
 

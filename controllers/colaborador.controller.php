@@ -92,7 +92,7 @@ if (isset($_POST['operacion'])){
       $idcolaborador = $_POST['idcolaborador'];
       $registro = $colaborador->obtenerColaborador($idcolaborador);
       
-      if ($registro['cv'] != '') {
+      if ($registro['cv']) {
         $rutaArchivo = '../views/pdf/documento/' . $registro['cv'];
         if (file_exists($rutaArchivo)) {
           unlink($rutaArchivo);
@@ -102,5 +102,12 @@ if (isset($_POST['operacion'])){
       $colaborador->eliminarColaborador($idcolaborador);
       
     }
+
+      if($_POST['operacion'] =='obt_pdf'){
+        $idcolaborador = $_POST['idcolaborador'];
+        $archivopdf = $colaborador->obtenerColaborador($idcolaborador);
+
+        echo $archivopdf;
+      }
   }
 
