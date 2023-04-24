@@ -1,10 +1,5 @@
 <?php
 
-
-
-
-
-
 require_once '../models/Escuela.php';
 
 if (isset($_POST['operacion'])){

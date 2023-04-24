@@ -1,8 +1,5 @@
 <?php
 
-
-
-
 require_once '../models/Colaborador.php';
 
 if (isset($_POST['operacion'])){

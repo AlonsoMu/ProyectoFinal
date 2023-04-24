@@ -1,8 +1,6 @@
 <?php
 
 
-
-
 require_once '../models/Estudiante.php';
 
 if (isset($_POST['operacion'])){
@@ -87,24 +85,46 @@ if (isset($_POST['operacion'])){
     }
   } //Fin operacion=listar
 
+
+  //Verifica si se ha recibido un valor llamado 'operacion' mediante el método POST y si ese valor es igual a 'obt_foto
   if($_POST['operacion'] == 'obt_foto'){
+    //Obtiene el valor del campo 'idestudiante' enviado desde el formulario HTML y lo asigna a la variable $idestudiante 
     $idestudiante = $_POST['idestudiante'];
+
+    //Crea un objeto de la clase Estudiante y llama al método 'obtenerEstudiante' para obtener la información del
+    //estudiante, resultado se asigna a la variable $archivoimg
     $archivoimg= $estudiante->obtenerEstudiante($idestudiante);
 
     echo $archivoimg;
+    //Imprime la variable $archivoimg en la pantalla
 
   }
 
+  //Verifica si el valor del campo 'operacion' en la solicitud POST es igual a 'eliminar',
+  // Si es así, se ejecutará el código para eliminar el estudiante.
   if($_POST['operacion'] == 'eliminar'){
+
+    //Asigna el valor del campo 'idestudiante' de la solicitud POST a la variable $idestudiante
     $idestudiante = $_POST['idestudiante'];
 
     $registro = $estudiante->obtenerEstudiante($idestudiante);
+    //Este valor se utiliza posteriormente para eliminar la fotografía del estudiante, si existe.
 
     $estudiante->eliminarEstudiante($idestudiante);
+    //Elimina el registro del estudiante correspondiente de la base de datos.
   
+    
+    //Verifica si el estudiante tiene una fotografía guardada en la base de datos,
+    //utilizando la variable $registro que se obtuvo anteriormente.
     if ($registro['fotografia']) {
+
+
+      //Construye una ruta de archivo que apunta a la fotografía del estudiante, 
+      //utilizando el nombre de archivo almacenado en la base de datos.
       $rutaArchivo = '../views/img/fotografias/' . $registro['fotografia'];
       if (file_exists($rutaArchivo)) {
+        //si el archivo de la fotografía realmente existe en el servidor, utilizando la función file_exists().
+        // Si existe, se elimina el archivo utilizando la función unlink()
         unlink($rutaArchivo);
       }
     }

@@ -1,11 +1,14 @@
 <?php
 
+// Una vez que el archivo es incluido(../models/Cargo.php), se pueden utilizar las clases, funciones 
+//y variables que se encuentran en él en el archivo actual.
+
+require_once '../models/Cargo.php'; 
 
 
-
-require_once '../models/Cargo.php';
-
-if (isset($_POST['operacion'])){
+//Isset : Determina si una variable está definida y no es NULL 
+//retorna TRUE si la variable existe y tiene un valor diferente de NULL, y FALSE en caso contrario.
+if (isset($_POST['operacion'])){ 
 
   $cargo = new Cargo();
 

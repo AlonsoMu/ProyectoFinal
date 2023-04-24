@@ -2,8 +2,10 @@
 
 require_once 'Conexion.php';
 
+// extends : Herencia (PDO) en php
 class Estudiante extends Conexion{
 
+  // Objeto que almacena la conexion que viene desde el padre (Conexion) y la compartira con todos los metodos (CRUD)
   private $accesoBD;
 
   public function __CONSTRUCT(){
@@ -37,7 +39,9 @@ class Estudiante extends Conexion{
 
   public function listarEstudiantes(){
     try{
+      //1. Preparamos la consulta
       $consulta = $this->accesoBD->prepare("CALL spu_estudiantes_listar()");
+      //2. Ejecutamos la consulta 
       $consulta->execute();
 
       return $consulta->fetchAll(PDO::FETCH_ASSOC);
@@ -47,9 +51,15 @@ class Estudiante extends Conexion{
     }
   }
 
+  // La funcion listarEstudiantes devuelve un arreglo asociativo que contiene la informacion de los
+  // cargos en la base de datos, y en caso de que ocurra alguen error en la consulta
+  // mostrara un error en la pantalla
+
   public function obtenerEstudiante($idestudiante = 0){
     try{
+        //1. Preparamos la consulta
         $consulta = $this->accesoBD->prepare("CALL spu_obtener_estudiantes(?)");
+        //2. Ejecutamos la consulta 
         $consulta->execute(array($idestudiante));
         $registro = $consulta->fetch();
   
@@ -59,10 +69,13 @@ class Estudiante extends Conexion{
         die($e->getMessage());
       }
     }
+    // La funcion obtenerEstudiante obtiene un registro de un estudiante (fotorgrafia) en la BD
 
   public function eliminarEstudiante($idestudiante = 0){
     try {
+      //1. Preparamos la consulta
       $consulta = $this->accesoBD->prepare("CALL spu_estudiantes_eliminar(?)");
+      //2. Ejecutamos la consulta 
       $consulta->execute(array($idestudiante));
       
       return true;
@@ -71,5 +84,7 @@ class Estudiante extends Conexion{
       die($e->getMessage());
     }
   }
+    // La funcion eliminarEstudiante elimina un registro de un colaborador en la BD
+    // mediante el ID
 
 }

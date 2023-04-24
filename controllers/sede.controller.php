@@ -1,7 +1,5 @@
 <?php
 
-
-
 require_once '../models/Sede.php';
 
 if (isset($_POST['operacion'])){

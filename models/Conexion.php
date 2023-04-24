@@ -24,7 +24,7 @@ class Conexion{
   }
 
   //Método 2: Retorna el acceso
-  public function getConexion(){
+  public function getConexion(){ //Try catch: Control de flujo para manejar excepciones o errores en la ejecucion del programa
     try{
       //Pasaremos la conexión al atributo/objeto $pdo
       $this->pdo = $this->conectarServidor();
